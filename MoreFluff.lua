@@ -1795,7 +1795,7 @@ function SMODS.INIT.MoreFluff()
             },
         },
         c_mf_orange = {
-            name = "Orange",
+            name = "橙色",
             text = {
                 "每层升级可将随机一张",
                 "手牌转换为{C:diamonds}方片",
@@ -2466,9 +2466,9 @@ function SMODS.INIT.MoreFluff()
     :register()
     
     SMODS.Deck:new("Gros Michel Deck", "mf_grosmichel", { gros_michel = true, atlas = "b_mf_grosmichel" }, { x = 0, y = 0 }, {
-        name = "Gros Michel Deck",
+        name = "大麦克牌组",
         text = {
-            "Start run with {C:attention}Gros Michel"
+            "开局时即拥有{C:attention}大麦克香蕉"
         }
     })
     :register()
@@ -2477,11 +2477,11 @@ function SMODS.INIT.MoreFluff()
     :register()
     
     SMODS.Deck:new("Rainbow Deck", "mf_rainbow", { voucher = 'v_mf_paintroller', consumables = {'c_mf_white'}, atlas = "b_mf_rainbow" }, { x = 0, y = 0 }, {
-        name = "Rainbow Deck",
+        name = "彩虹牌组",
         text = {
-            "Start run with a {C:colourcard}White",
-            "{C:colourcard}Colour{} card and the",
-            "{C:tarot,T:v_mf_paintroller}Paint Roller{} Voucher",
+            "开局时即拥有",
+            "{C:colourcard}白色色彩卡{}",
+            "和{C:tarot,T:v_mf_paintroller}刷漆滚筒{}优惠券",
         }
     })
     :register()
@@ -2491,10 +2491,10 @@ function SMODS.INIT.MoreFluff()
         :register()
         
         SMODS.Deck:new("Philosophical Deck", "mf_philosophical", { philosophical = true, atlas = "b_mf_philosophical" }, { x = 0, y = 0 }, {
-            name = "Philosophical Deck",
+            name = "哲思牌组",
             text = {
-                "Start run with 5",
-                "{C:attention}Philosophical Jokers"
+                "开局时即拥有",
+                "5张{C:attention}哲思小丑"
             }
         })
         :register()
@@ -2506,10 +2506,10 @@ function SMODS.INIT.MoreFluff()
         :register()
         
         SMODS.Deck:new("Blasphemous Deck", "mf_blasphemy", { blasphemy = true, atlas = "b_mf_blasphemy" }, { x = 0, y = 0 }, {
-            name = "Blasphemous Deck",
+            name = "亵神牌组",
             text = {
-                "Start run with a {C:dark_edition}Negative{}",
-                "{C:spectral}Eternal{} {C:attention}Blasphemy"
+                "开局时即拥有{}",
+                "带有{C:dark_edition}负片{}和{C:spectral}永恒{}的{C:attention}污神渎圣"
             }
         })
         :register()
@@ -2522,21 +2522,21 @@ function SMODS.INIT.MoreFluff()
         :register()
         
         SMODS.Deck:new("Freaky Deck", "mf_freaky", { atlas = "b_mf_freaky" }, { x = 0, y = 0 }, {
-            name = "Freaky Deck",
+            name = "发癫牌组",
             text = {
-                "Jokers are now {C:attention}freaky"
+                "所有小丑{C:attention}都发癫了"
             }
         })
         :register()
         
         G.localization.descriptions.Other.e_freaky = {
-            name = "Freaky",
+            name = "发癫",
             text = {
-                "Freaky",
+                "发癫",
             }
         }
 
-        G.localization.misc.labels.freaky = 'Freaky'
+        G.localization.misc.labels.freaky = '发癫'
 
         -- surprisingly simple
         G.SHADERS['freaky'] = love.graphics.newShader(SMODS.findModByID("MoreFluff").path.."/assets/shaders/freaky.fs")
@@ -3915,7 +3915,7 @@ function SMODS.INIT.MoreFluff()
         SMODS.Jokers.j_mf_dropkick.calculate = function(self, context)
             if context.after and context.cardarea == G.jokers and next(context.poker_hands['Straight']) and not context.blueprint then
                 ease_hands_played(1)
-                card_eval_status_text(context.blueprint_card or self, 'extra', nil, nil, nil, {message = "+1 Hand"})
+                card_eval_status_text(context.blueprint_card or self, 'extra', nil, nil, nil, {message = "+1出牌次数"})
             end
         end
     end
