@@ -82,42 +82,39 @@ G.C.ColourCard = HEX("4f6367")
 G.P_CENTER_POOLS.Colour = {}
 G.localization.descriptions.Colour = {}
 G.localization.descriptions["Other"]["undiscovered_colour"] = {
-  name = "Not Discovered",
+  name = "未发现",
   text = {
-    "Purchase or use",
-    "this card in an",
-    "unseeded run to",
-    "learn what it does"
+    "在非预设局",
+    "中购买或",
+    "使用此牌",
+    "以了解其效果"
   }
 }
-G.localization.misc.dictionary["k_colour"] = "Colour"
-G.localization.misc.dictionary["k_plus_colour"] = "+1 Colour"
-G.localization.misc.dictionary["k_colour_pack"] = "Colour Pack"
+G.localization.misc.dictionary["k_colour"] = "色彩"
+G.localization.misc.dictionary["k_plus_colour"] = "+1色彩"
+G.localization.misc.dictionary["k_colour_pack"] = "色彩包"
 
 G.localization.descriptions["Other"]["p_colour_normal"] = {
-  name = "Colour Pack",
+  name = "色彩包",
   text = {
-      "Choose {C:attention}1{} of up to",
-      "{C:attention}2{C:colourcard} Colour{} cards to",
-      "add to your consumeables"
+      "从最多{C:attention}2张{C:colourcard}色彩卡{}中",
+      "选择{C:attention}1{}张"
   }
 }
 
 G.localization.descriptions["Other"]["p_colour_jumbo"] = {
-  name = "Jumbo Colour Pack",
+  name = "巨型色彩包",
   text = {
-      "Choose {C:attention}1{} of up to",
-      "{C:attention}4{C:colourcard} Colour{} cards to",
-      "add to your consumeables"
+    "从最多{C:attention}4张{C:colourcard}色彩卡{}中",
+    "选择{C:attention}1{}张"
   }
 }
 
 G.localization.descriptions["Other"]["p_colour_mega"] = {
-  name = "Mega Colour Pack",
+  name = "超级色彩包",
   text = {
-      "Choose {C:attention}2{} of up to",
-      "{C:attention}4{C:colourcard} Colour{} cards to",
-      "add to your consumeables"
+    "从最多{C:attention}4张{C:colourcard}色彩卡{}中",
+    "选择{C:attention}2{}张"
   }
 }
 
@@ -166,7 +163,7 @@ local create_UIBox_your_collectionref = create_UIBox_your_collection
 function create_UIBox_your_collection()
     local retval = create_UIBox_your_collectionref()
     table.insert(retval.nodes[1].nodes[1].nodes[1].nodes[1].nodes[4].nodes[2].nodes, UIBox_button({
-        button = 'your_collection_colours', label = { "Colour Cards" }, count = G.DISCOVER_TALLIES.colours, minw = 4, id = 'your_collection_colours', colour = G.C.SECONDARY_SET.ColourCard
+        button = 'your_collection_colours', label = { "色彩卡" }, count = G.DISCOVER_TALLIES.colours, minw = 4, id = 'your_collection_colours', colour = G.C.SECONDARY_SET.ColourCard
     }))
     return retval
 end
@@ -991,9 +988,9 @@ function Card:use_consumeable(area, copier)
             -- bunco's function isn't public. yay!!!!!!!
             local function acknowledge(suit, initial)
 
-                if suit == 'Fleurons' then
+                if suit == '印花' then
 
-                    SMODS.Card:new_suit('Fleurons', 'exotic_cards', 'exotic_cards_high_contrast', { y = 0 }, 'exotic_cards_ui', 'exotic_cards_ui_high_contrast',
+                    SMODS.Card:new_suit('印花', 'exotic_cards', 'exotic_cards_high_contrast', { y = 0 }, 'exotic_cards_ui', 'exotic_cards_ui_high_contrast',
                         { x = 0, y = 0 }, 'd6901a', 'dbb529')
 
                     if G.GAME ~= nil and (G.GAME.Fleurons == false or G.GAME.Fleurons == nil) and initial == nil then
@@ -1001,7 +998,7 @@ function Card:use_consumeable(area, copier)
                         G.GAME.Fleurons = true
 
                         if G.GAME.first_exotic_suit == nil then
-                            G.GAME.first_exotic_suit = 'Fleurons'
+                            G.GAME.first_exotic_suit = '印花'
                         end
 
                         sendDebugMessage('Acknowledged '..suit..'! (Initial:'..tostring(initial or 'false')..')')
@@ -1234,512 +1231,502 @@ function SMODS.INIT.MoreFluff()
 
     local localization = {
         mf_brainrot = {
-            name = "Brainrot",
+            name = "降智梗小鬼",
             text = {
-                "When {C:attention}Blind{} is selected,",
-                "destroy the leftmost Joker",
-                "and permanently add {C:attention}5x",
-                "its sell value to these {C:blue}Chips",
-                "{C:inactive}(Currently {C:chips}+#1#{C:inactive} Chips)"
+                "在选择{C:attention}盲注{}时",
+                "摧毁最左边的小丑牌",
+                "并将其售价的{C:attention}五倍",
+                "永久添加至这张牌的{C:blue}筹码",
+                "{C:inactive}（当前为{C:chips}+#1#{C:inactive}筹码）"
             }
         },
         mf_triangle = {
-            name = "Triangle Joker",
+            name = "三角小丑",
             text = {
-                "Gains {C:chips}+#2#{} Chips and",
-                "increase Chips gained",
-                "by {C:chips}1{} if played hand has",
-                "exactly {C:attention}3{} cards",
-                "{C:inactive}(Currently {C:chips}#1#{C:inactive} Chips)"
+                "如果打出的牌",
+                "正好是{C:attention}3{}张",
+                "这张小丑牌获得{C:chips}+#2#{}筹码",
+                "获得筹码数每次递增{C:chips}1{}",
+                "{C:inactive}（当前为{C:chips}#1#{C:inactive}筹码）"
             }
         },
         mf_boxofhands = {
-            name = "Box of Hands",
+            name = "出牌宝箱",
             text = {
-                "Sell this card to gain {C:blue}5{} hands",
-                "only for the current round",
-                "{C:inactive}(No effect outside of a round)"
+                "售出此牌",
+                "即可在本回合内",
+                "获得{C:blue}5{}次出牌次数",
+                "{C:inactive}（回合外无效）"
             }
         },
         mf_hallofmirrors = {
-            name = "Hall of Mirrors",
+            name = "镜厅",
             text = {
-                "{C:attention}+2{} hand size for",
-                "each {C:attention}6{} scored in",
-                "the current round",
-                "{C:inactive}(Currently {C:attention}+#1#{C:inactive} cards)"
+                "当前回合内",
+                "每打出一张计分的{C:attention}6",
+                "{C:attention}+2{}手牌上限",
+                "{C:inactive}（当前为{C:attention}+#1#{C:inactive}手牌上限）"
             }
         },
         mf_rosetinted = {
-            name = "Rose-Tinted Glasses",
+            name = "瑰色眼镜",
             text = {
-                "If {C:attention}first hand{} of round is",
-                "a single {C:attention}2{}, destroy it and",
-                "create a free {C:attention}#1#{}",
+                "如果回合的{C:attention}第一次出牌{}",
+                "只有一张{C:attention}2{}，则将其摧毁",
+                "并创建一个免费的{C:attention}#1#{}",
             }
         },
         mf_impostor = {
-            name = "Impostor",
+            name = "伪装者",
             text = {
-                "{X:mult,C:white} X2 {} Mult if the",
-                "played hand has",
-                "exactly one {C:red}red{} card"
+                "打出的牌中有且只有",
+                "一张{C:red}红色{}牌时",
+                "{X:mult,C:white} X2 {}倍率"
             }
         },
         mf_glitterbomb = {
-            name = "Glitter Bomb",
+            name = "闪粉爆弹",
             text = {
-                "Sell this card to",
-                "give all held cards",
-                "a random {C:attention}Enhancement{}"
+                "售出此牌",
+                "可给予所有手牌",
+                "随机的{C:attention}增强效果{}"
             }
         },
         mf_basepaulcard = {
-            name = "Basepaul Card",
+            name = "胖球卡",
             text = {
-                "{X:mult,C:white} X1.25 {} Mult. {X:mult,C:white} X12.5 {} Mult",
-                "instead for {C:red}Paul{}",
-                "{C:inactive}(Who's Paul?)"
+                "{X:mult,C:white} X1.25 {}倍率",
+                "但如果是{C:red}胖球{}则{X:mult,C:white} X12.5 {}倍率",
+                "{C:inactive}（胖球是哪位啊？）"
             }
         },
         mf_jester = {
-            name = "Jester",
+            name = "逗乐小丑",
             text = {
-                "{C:chips,s:1.1}+40{} Chips"
+                "{C:chips,s:1.1}+40{}筹码"
             }
         },
         mf_lollipop = {
-            name = "Lollipop",
+            name = "棒棒糖",
             text = {
-                "{X:mult,C:white} X#1# {} Mult",
-                "{X:mult,C:white} -X#2# {} Mult per",
-                "round played"
+                "{X:mult,C:white} X#1# {}倍率",
+                "每回合结束时",
+                "{X:mult,C:white} -X#2# {}倍率"
             }
         },
         mf_spiraljoker = {
-            name = "Spiral Joker",
+            name = "螺旋小丑",
             text = {
-                "{C:mult}+(10+7cos(pi/8 x {C:attention}$${C:mult})){} Mult",
-                "{C:inactive}({C:attention}$${C:inactive} is your current money)",
-                "{C:inactive}(Currently gives {C:mult}+#1#{C:inactive} Mult)"
+                "{C:mult}+(10+7cos(pi/8 x {C:attention}$${C:mult})){}倍率",
+                "{C:inactive}（{C:attention}$${C:inactive}为你当前的资金）",
+                "{C:inactive}（当前为{C:mult}+#1#{C:inactive}倍率）"
             }
         },
         mf_luckycharm = {
-            name = "Lucky Charm",
+            name = "幸运魔符",
             text = {
-                "{C:green}#1# in #3#{} chance",
-                "for {C:mult}+#2#{} Mult",
-                "{C:green}#1# in #5#{} chance",
-                "to win {C:money}$#4#",
-                "at end of round"
+                "有{C:green}#1#/#3#{}的几率{C:mult}+#2#{}倍率",
+                "回合结束时有{C:green}#1#/#5#{}的几率",
+                "获得{C:money}$#4#"
             }
         },
         mf_stylemeter = {
-            name = "Style Meter",
+            name = "丝滑小连招",
             text = {
-                "Earn {C:money}$3{} at end",
-                "of round for each",
-                "{C:attention}Blind{} skipped this run",
-                "{C:inactive}(Currently {C:money}$#1#{C:inactive})"
+                "本赛局每跳过一次{C:attention}盲注",
+                "每回合结束时获得{C:money}$3",
+                "{C:inactive}（当前为{C:money}$#1#{C:inactive}）"
             }
         },
         mf_bloodpact = {
-            name = "Blood Pact",
+            name = "血契",
             text = {
-                "{X:mult,C:white} X5 {} Mult",
-                "Destroyed if you play",
-                "a non-{C:hearts}Hearts{} card"
+                "{X:mult,C:white} X5 {}倍率",
+                "打出的非{C:hearts}红桃{}牌",
+                "会摧毁此牌"
             }
         },
         mf_moneyprinter = {
-            name = "Money Printer",
+            name = "印钞机",
             text = {
-                "Earn {C:money}$2{} for each",
-                "played numbered card",
-                "that is a digit of",
-                "your current money",
-                "{C:inactive}(Ace = 1, 10 = 0)"
+                "每打出一张点数与",
+                "当前资金相同的数字牌",
+                "获得{C:money}$2{}",
+                "{C:inactive}（A对应$1，10对应$0）"
             }
         },
         mf_sealthedeal = {
-            name = "Seal the Deal",
+            name = "盖章成交",
             text = {
-                "After you play a winning hand,",
-                "add a random {C:attention}Seal{} to",
-                "one of the played cards",
+                "打出一手致胜牌后",
+                "为其中的一张牌",
+                "随机添加一个{C:attention}蜡封"
             }
         },
         mf_particleaccelerator = {
-            name = "Particle Accelerator",
+            name = "粒子加速器",
             text = {
-                "Gains {X:mult,C:white} X0.5 {} Mult if played",
-                "hand has only {C:attention}1{} card,",
-                "otherwise gives {X:mult,C:white} X#1# {} Mult",
-                "and resets to {X:mult,C:white} X1 {} Mult"
+                "{X:mult,C:white} X#1# {}倍率",
+                "只打出{C:attention}1{}张牌时获得{X:mult,C:white} X0.5 {}倍率",
+                "否则在计分后重置为{X:mult,C:white} X1 {}倍率"
             }
         },
         mf_clownfish = {
-            name = "Clownfish",
+            name = "小丑鱼",
             text = {
-                "{C:attention}Enhanced{} cards",
-                "score {C:chips}+10{} more Chips",
-                "and {C:mult}+4{} more Mult",
-                "when scored"
+                "打出的{C:attention}增强{}卡牌",
+                "在计分时给予{C:chips}+10{}筹码",
+                "和{C:mult}+4{}倍率"
             }
         },
         mf_balatromods = {
-            name = "Balatro Mods (Working 2024)",
+            name = "Balatro模组安装教程（2024年最新版）",
             text = {
-                "If {C:attention}first hand{} of round",
-                "has only {C:attention}1{} card, spend",
-                "{C:attention}$2{} to give it a",
-                "random {C:attention}Enhancement{}",
+                "如果回合的{C:attention}第一次出牌{}",
+                "只有{C:attention}1{}张牌，",
+                "则花费{C:attention}$2{}并为其",
+                "添加一种随机的{C:attention}增强效果{}"
             }
         },
         mf_treasuremap = {
-            name = "Treasure Map",
+            name = "藏宝图",
             text = {
-                "After {C:attention}3{} rounds,",
-                "sell this card to",
-                "earn {C:money}$18{}",
-                "{C:inactive}(Currently {C:attention}#1#{C:inactive}/3)"
+                "{C:attention}3{}回合后，",
+                "售出此牌即可",
+                "获得{C:money}$18",
+                "{C:inactive}（当前为{C:attention}#1#{C:inactive}/3回合）"
             },
         },
         mf_expansionpack = {
-            name = "Expansion Pack",
+            name = "扩展包",
             text = {
-                "When {C:attention}Blind{} is selected,",
-                "create {C:attention}1 {C:dark_edition}modded{C:attention} Joker",
-                "{C:inactive}(Must have room)"
+                "选择{C:attention}盲注{}时",
+                "生成{C:attention}1{}张{C:dark_edition}非原版{}的{C:attention}小丑牌",
+                "{C:inactive}（必须有空间）"
             },
         },
         mf_fived = {
-            name = "5D Joker with Multiverse Time Travel",
+            name = "第五维度多重宇宙时空穿梭小丑",
             text = {
-                "{C:attention}-1{} Ante and is destroyed if",
-                "you defeat the {C:attention}Blind",
-                "by {C:attention}10x{} or more"
+                "以{C:attention}10倍{}于最低要求",
+                "或更高的分数击败盲注时",
+                "底注{C:attention}-1{}并摧毁此牌"
             },
         },
         mf_teacup = {
-            name = "Teacup",
+            name = "茶杯",
             text = {
-                "Upgrade the level of",
-                "each {C:attention}played hand{}",
-                "for the next {C:attention}#1#{} hands",
+                "升级接下来",
+                "{C:attention}#1#{}次出牌的",
+                "牌型等级"
             },
         },
         mf_whiteboard = {
-            name = "Whiteboard",
+            name = "白板",
             text = {
-                "{X:red,C:white} X2 {} Mult for each",
-                "empty hand space",
-                "after {C:attention}3{} cards"
+                "出牌前，若手牌数",
+                "比上限少{C:attention}2{}张以上",
+                "每更少一张",
+                "{X:red,C:white} X2 {}倍率"
             },
         },
         mf_mspaint = {
-            name = "MS Paint Joker",
+            name = "鼠标画图小丑",
             text = {
-                "{C:attention}+4{} hand size",
-                "for the first hand",
-                "of each blind"
+                "每个盲注的第一次出牌",
+                "{C:attention}+4{}手牌上限"
             },
         },
         mf_hugejoker = {
-            name = "Huge Joker",
+            name = "大小丑",
             text = {
-                "{X:red,C:white} X3 {} Mult",
-                "{C:attention}-2{} hand size"
+                "{X:red,C:white} X3 {}倍率",
+                "{C:attention}-2{}手牌上限"
             },
         },
         mf_miner = {
-            name = "Miner",
+            name = "矿工",
             text = {
-                "Gain a {C:green}D6 Tag{}",
-                "when {C:attention}Boss Blind",
-                "is selected",
+                "选择{C:attention}Boss盲注时",
+                "获得一个{C:green}D6标签{}"
             },
         },
         mf_recycling = {
-            name = "Recycling",
+            name = "废品回收",
             text = {
-                "Create a random {C:planet}Planet{}",
-                "or {C:tarot}Tarot{} card",
-                "when any {C:attention}Booster{}",
-                "{C:attention}Pack{} is skipped",
-                "{C:inactive}(Must have room)"
+                "跳过补充包时",
+                "随机生成一张",
+                "{C:planet}星球牌{}或{C:tarot}塔罗牌",
+                "{C:inactive}（必须有空间）"
             },
         },
         mf_hollow = {
-            name = "Hollow Joker",
+            name = "中空小丑",
             text = {
-                "{C:attention}-1{} hand size",
-                "{C:mult}+10{} Mult per hand",
-                "size below {C:attention}9"
+                "{C:attention}-1{}手牌上限",
+                "手牌上限每比9小1",
+                "{C:mult}+10{}倍率"
             },
         },
         mf_tonersoup = {
-            name = "I Sip Toner Soup",
+            name = "双口心力又太冝",
             text = {
-                "Create a {C:tarot}Tarot{} card",
-                "when a hand is played",
-                "Destroyed when blind",
-                "is defeated",
-                "{C:inactive}(Must have room)"
+                "每次出牌时",
+                "生成一张{C:tarot}塔罗牌{}",
+                "{C:inactive}（必须有空间）",
+                "击败盲注后摧毁"
             },
         },
         mf_leagueoflegends = {
-            name = "Bad Legal Defence",
+            name = "反向辩护",
             text = {
-                "Create a {C:attention}Death{} {C:tarot}Tarot{}",
-                "when {C:attention}Boss Blind{}",
-                "is selected",
-                "{C:inactive}(Must have room)"
+                "选择{C:attention}Boss盲注{}时",
+                "生成一张{C:attention}死神{}{C:tarot}塔罗牌{}",
+                "{C:inactive}（必须有空间）"
             },
         },
         mf_pipe = {
-            name = "Philosophical Joker",
+            name = "哲思小丑",
             text = {
-                "{C:dark_edition}+1{} Joker Slot"
+                "{C:dark_edition}+1{}小丑牌槽位"
             },
         },
         mf_blackmarket = {
-            name = "Black Market",
+            name = "黑市",
             text = {
-                "When {C:attention}Boss Blind{}",
-                "is selected, spend {C:attention}$10",
-                "to summon an {C:spectral}Ankh{} card"
+                "选择{C:attention}Boss盲注{}时",
+                "花费{C:money}$10",
+                "并召唤一张{C:spectral}生命十字章"
             },
         },
         mf_blasphemy = {
-            name = "Blasphemy",
+            name = "污神渎圣",
             text = {
-                "{X:red,C:white} X4 {} Mult",
-                "{C:blue}-9999{} hands",
-                "when hand is played"
+                "{X:red,C:white} X4 {}倍率",
+                "打出手牌时",
+                "{C:blue}-9999{}次出牌次数"
             },
         },
         mf_thesolo = {
-            name = "The Solo",
+            name = "独狼",
             text = {
-                "Gains {X:mult,C:white} X0.1 {} Mult if played",
-                "hand has only {C:attention}1{} card",
-                "{C:inactive}(Currently {X:mult,C:white} X#1# {C:inactive} Mult)",
+                "如果只打出{C:attention}1{}张牌",
+                "这张牌获得{X:mult,C:white} X0.1 {}倍率",
+                "{C:inactive}（当前为{X:mult,C:white} X#1# {C:inactive}倍率）",
             }
         },
         mf_thejester = {
-            name = "The Jester",
+            name = "弄臣",
             text = {
-                "{X:mult,C:white} X2.5 {} Mult for",
-                "each unique played pair"
+                "打出的牌中",
+                "每有一个对子",
+                "{X:mult,C:white} X2.5 {}倍率"
             }
         },
         mf_globe = {
-            name = "Globe",
+            name = "地球仪",
             text = {
-                "Create a {C:planet}Planet{} card",
-                "when you {C:attention}reroll{} in the shop",
+                "在商店中{C:attention}重掷{}时",
+                "生成一张{C:planet}星球牌{}"
             }
         },
         mf_globe = {
-            name = "Globe",
+            name = "地球仪",
             text = {
-                "Create a {C:planet}Planet{} card",
-                "when you {C:attention}reroll{} in the shop",
+                "在商店中{C:attention}重掷{}时",
+                "生成一张{C:planet}星球牌{}"
             }
         },
         mf_couponcatalogue = {
-            name = "Coupon Catalogue",
+            name = "集券册",
             text = {
-                "{C:mult}+10{} Mult for each",
-                "{C:attention}Voucher{} purchased",
-                "this run",
-                "{C:inactive}(Currently {C:mult}+#1#{C:inactive} Mult)",
+                "本赛局内",
+                "每购买过一张{C:attention}优惠券",
+                "{C:mult}+10{}倍率",
+                "{C:inactive}（当前为{C:mult}+#1#{C:inactive}倍率）"
             }
         },
         mf_ace = {
-            name = "Ace Up The Sleeve",
+            name = "兜底王牌",
             text = {
-                "Add a random {C:attention}Enhanced",
-                "{C:attention}Ace{} to your hand",
-                "when you have {C:blue}1{}",
-                "hand left"
+                "仅剩{C:blue}1{}次出牌次数时",
+                "将一张带有随机{C:attention}增强{}的{C:attention}A{}",
+                "添加至手牌"
             }
         },
         mf_fleshprison = {
-            name = "Flesh Prison",
+            name = "血肉监牢",
             text = {
-                "{C:red}X5{} {C:attention}Boss Blind{} size",
-                "Destroyed and creates a",
-                "{C:dark_edition}Negative{} {C:spectral}Soul{} card when a",
-                "{C:attention}Boss Blind{} is defeated"
+                "使{C:attention}Boss盲注{}的得分要求{C:red}X5{}",
+                "击败{C:attention}Boss盲注{}会摧毁此牌",
+                "并生成一张{C:dark_edition}负片{C:spectral}灵魂{}",
+                ""
             }
         },
         mf_goldencarrot = {
-            name = "Golden Carrot",
+            name = "黄金胡萝卜",
             text = {
-                "Earn {C:money}$#1#{} at",
-                "end of round",
-                "{C:money}-$#2#{} per hand played"
+                "回合结束时",
+                "获得{C:money}$#1#{}",
+                "每次出牌{C:money}-$#2#{}"
             }
         },
         mf_bowlingball = {
-            name = "Bowling Ball",
+            name = "保龄球",
             text = {
-                "Played {C:attention}3s{}",
-                "give {C:chips}+60{} Chips",
-                "and {C:mult}+10{} Mult",
-                "when scored"
+                "打出的{C:attention}3{}",
+                "在计分时给予{C:chips}+60{}筹码",
+                "和{C:mult}+10{}倍率"
             }
         },
         mf_simplified = {
-            name = "Simplified Joker",
+            name = "简笔画小丑",
             text = {
-                "Other {C:blue}Common{} Jokers",
-                "each give {C:mult}+4{} Mult",
+                "除自身外",
+                "每张{C:blue}普通{}小丑牌",
+                "会给予{C:mult}+4{}倍率",
             }
         },
         mf_jankman = {
             name = "Jankman",
             text = {
-                "Other {C:dark_edition}Modded{} Jokers",
-                "each give {X:mult,C:white} X1.25 {} Mult",
+                "除自身外",
+                "每张{C:dark_edition}非原版{}的小丑牌",
+                "给予{X:mult,C:white} X1.25 {} 倍率",
             }
         },
         mf_pixeljoker = {
-            name = "Pixel Joker",
+            name = "像素块小丑",
             text = {
-                "Played {C:attention}Aces{},",
-                "{C:attention}4s{} and {C:attention}9s{} each give",
-                "{X:mult,C:white} X1.5 {} Mult when scored"
+                "打出的{C:attention}A{}、{C:attention}4{}和{C:attention}9{}",
+                "在计分时给予{X:mult,C:white} X1.5 {}倍率"
             },
         },
         mf_burnerphone = {
-            name = "Burner Phone",
+            name = "一次性电话",
             text = {
-                "Shows the rank and suit",
-                "of the top two cards",
-                "of the deck",
-                "{C:inactive}(Currently {V:1}#1#{V:2}#2#{V:3}#3#{C:inactive}",
-                "{C:inactive}and {V:4}#4#{V:5}#5#{V:6}#6#{C:inactive})"
+                "显示牌组顶端两张牌",
+                "的点数和花色",
+                "{C:inactive}（当前为{V:1}#1#{V:2}#2#{V:3}#3#{C:inactive}",
+                "{C:inactive}，{V:4}#4#{V:5}#5#{V:6}#6#{C:inactive})"
             },
         },
         mf_virtual = {
-            name = "Virtual Joker",
+            name = "虚幻小丑",
             text = {
-                "{X:red,C:white} X3 {} Mult",
-                "Flips and shuffles all",
-                "Joker cards when",
-                "blind is selected"
+                "{X:red,C:white} X3 {}倍率",
+                "选择{C:attention}盲注{}时",
+                "翻转并洗乱所有小丑牌",
+                ""
             },
         },
         mf_dramaticentrance = {
-            name = "Dramatic Entrance",
+            name = "闪亮登场",
             text = {
-                "{C:chips} +150 {} Chips",
-                "on first hand",
-                "each round"
+                "每回合的",
+                "第一次出牌",
+                "{C:chips}+150{}筹码"
             },
         },
         mf_bladedance = {
-            name = "Blade Dance",
+            name = "舞刀弄剑",
             text = {
-                "Adds 2 temporary",
-                "{C:attention}Steel Cards{}",
-                "to your deck when",
-                "blind is selected"
+                "选择盲注时",
+                "将两张临时的",
+                "{C:attention}钢铁牌{}",
+                "加入牌组"
             },
         },
         mf_hyperbeam = {
-            name = "Hyper Beam",
+            name = "超煞光束",
             text = {
-                "{X:red,C:white} X3 {} Mult",
-                "{C:attention}Lose all discards",
-                "when {C:attention}Blind{} is selected"
+                "{X:red,C:white} X3 {}倍率",
+                "选择{C:attention}盲注{}后",
+                "{C:attention}失去所有弃牌次数"
             },
         },
         mf_dropkick = {
-            name = "Dropkick",
+            name = "腾越飞蹬",
             text = {
-                "{C:blue}+1{} hand when hand",
-                "contains a {C:attention}Straight"
+                "如果打出的牌中",
+                "包含{C:attention}顺子{}",
+                "{C:blue}+1{}出牌次数"
             },
         },
         mf_bigshot = {
-            name = "Big Shot Joker",
+            name = "顶流小丑",
             text = {
-                "Played {C:attention}Aces{},",
-                "{C:attention}9s{}, and {C:attention}7s{} earn",
-                "{C:money}$1{} when scored",
-                "Retrigger all played {C:attention}9s{}",
+                "打出的{C:attention}A{}、{C:attention}9{}和{C:attention}7{}",
+                "在计分时获得{C:money}$1{}",
+                "重新触发所有打出的{C:attention}9{}",
             },
         },
         mf_paintcan = {
-            name = "Paint Can",
+            name = "颜料罐",
             text = {
-                "{C:green}#1# in 5{} chance to add",
-                "{C:attention}1{} round to {C:colourcard}Colour Cards{}",
-                "when they gain a round",
+                "{C:colourcard}色彩卡{}升级层数时",
+                "有{C:green}#1#/5{}的几率",
+                "额外获得{C:attention}1{}层"
             },
         },
         mf_clipart = {
-            name = "Clipart Joker",
+            name = "剪贴画小丑",
             text = {
-                "Create a {C:colourcard}Colour{} card",
-                "when {C:attention}Blind{} is selected",
-                "{C:inactive}(Must have room)"
+                "选择{C:attention}盲注{}时",
+                "生成一张{C:colourcard}色彩卡",
+                "{C:inactive}（必须有空间）"
             },
         },
         mf_loadeddisk = {
-            name = "Loaded Disk",
+            name = "荷载磁盘",
             text = {
-                "Creates a {C:colourcard}Pink{} and",
-                "a {C:colourcard}Yellow{} {C:colourcard}Colour{} card",
-                "when sold",
-                "{C:inactive}(Must have room)"
+                "售出此牌即可",
+                "生成{C:colourcard}粉色{}和{C:colourcard}黄色",
+                "的{C:colourcard}色彩卡{}各一张",
+                "{C:inactive}（必须有空间）"
             },
         },
         mf_mrloans = {
-            name = "Mr. Loans",
+            name = "贷款先生",
             text = {
-                "Prevents death if",
-                "not in debt, but you",
-                "lose {C:money}${} equal to remaining",
-                "required chips"
+                "未负债时不会死亡",
+                "但会扣除与剩余所需",
+                "筹码数等量的{C:money}资金"
             },
         },
         mf_rainbow = {
-            name = "Rainbow Joker",
+            name = "彩虹小丑",
             text = {
-                "{C:colourcard}Colour{} cards give",
-                "{X:mult,C:white} X2{} Mult"
+                "{C:colourcard}色彩卡{}给予",
+                "{X:mult,C:white} X2 {}倍率"
             },
         },
         mf_mouthmoods = {
-            name = "Mashup Album",
+            name = "混声专辑",
             text = {
-                "Gains {C:mult}+4{} Mult if played",
-                "hand contains a {C:hearts}red{} flush",
-                "Gains {C:chips}+15{} Chips if played",
-                "hand contains a {C:spades}black{} flush",
-                "{C:inactive}(Currently {C:mult}+#1#{C:inactive} and {C:chips}+#2#{C:inactive})"
+                "如果打出的牌中",
+                "包含{C:hearts}红色{}同花",
+                "这张牌获得{C:mult}+4{}倍率",
+                "包含{C:spades}黑色{}同花",
+                "则获得{C:chips}+15{}筹码",
+                "{C:inactive}（当前为{C:mult}+#1#{C:inactive}|{C:chips}+#2#{C:inactive}）"
             },
         },
         mf_css = {
             name = "CSS",
             text = {
-                "Create a random {C:colourcard}Colour",
-                "card when played hand",
-                "contains a {C:attention}Flush"
+                "如果打出的牌中",
+                "包含{C:attention}同花",
+                "随机生成一张{C:colourcard}色彩卡"
             },
         },
         mf_cba = {
-            name = "Card Buffer Advanced",
+            name = "卡牌成本缓冲效益进阶分析",
             text = {
-                "If {C:attention}first hand{} of round",
-                "has only {C:attention}1{} card, add",
-                "add {C:dark_edition}Foil{}, {C:dark_edition}Holographic{}, or",
-                "{C:dark_edition}Polychrome{} effect to it",
+                "如果回合的{C:attention}第一次出牌",
+                "只有{C:attention}1{}张牌",
+                "为其随机添加{C:dark_edition}闪箔{}、{C:dark_edition}镭射{}",
+                "和{C:dark_edition}多彩{}效果中的一种"
             },
         },
         -- mf_cube = {
@@ -1760,156 +1747,168 @@ function SMODS.INIT.MoreFluff()
         -- },
 
         c_mf_black = {
-            name = "Black",
+            name = "黑色",
             text = {
-                "Add {C:dark_edition}Negative{} to a",
-                "random {C:attention}Joker{} for every",
-                "{C:attention}4{} rounds this has been held",
-                "{C:inactive}(Currently {C:attention}#1#{C:inactive}, {}[{C:attention}#2#{C:inactive}#3#{}]{C:inactive})"
+                "每层升级可为随机一张",
+                "小丑牌添加{C:dark_edition}负片{}效果",
+                "每{C:attention}4{}回合叠加一层升级",
+                "{C:inactive}当前升级层数：{C:attention}#1#",
+                "{C:inactive}当前升级进度：{C:attention}#2#{C:inactive}#3#"
             },
         },
         c_mf_deepblue = {
-            name = "Deep Blue",
+            name = "深蓝色",
             text = {
-                "Converts a random card in",
-                "hand to {C:spades}Spades{} for every",
-                "round this has been held",
-                "{C:inactive}(Currently {C:attention}#1#{C:inactive}, {}[{C:attention}#2#{C:inactive}#3#{}]{C:inactive})"
+                "每层升级可将随机一张",
+                "手牌转换为{C:spades}黑桃{}",
+                "每{C:attention}1{}回合叠加一层升级",
+                "{C:inactive}当前升级层数：{C:attention}#1#",
+                "{C:inactive}当前升级进度：{C:attention}#2#{C:inactive}#3#"
             },
         },
         c_mf_crimson = {
-            name = "Crimson",
+            name = "绯红色",
             text = {
-                "Create a {C:red}Rare Tag{} for",
-                "every {C:attention}3{} rounds",
-                "this has been held",
-                "{C:inactive}(Currently {C:attention}#1#{C:inactive}, {}[{C:attention}#2#{C:inactive}#3#{}]{C:inactive})"
+                "每层升级可生成一个{C:red}稀有标签",
+                "每{C:attention}3{}回合叠加一层升级",
+                "{C:inactive}当前升级层数：{C:attention}#1#",
+                "{C:inactive}当前升级进度：{C:attention}#2#{C:inactive}#3#"
             },
         },
         c_mf_seaweed = {
-            name = "Seaweed",
+            name = "海藻色",
             text = {
-                "Converts a random card in",
-                "hand to {C:clubs}Clubs{} for every",
-                "round this has been held",
-                "{C:inactive}(Currently {C:attention}#1#{C:inactive}, {}[{C:attention}#2#{C:inactive}#3#{}]{C:inactive})"
+                "每层升级可将随机一张",
+                "手牌转换为{C:clubs}梅花{}",
+                "每{C:attention}1{}回合叠加一层升级",
+                "{C:inactive}当前升级层数：{C:attention}#1#",
+                "{C:inactive}当前升级进度：{C:attention}#2#{C:inactive}#3#"
             },
         },
         c_mf_brown = {
-            name = "Brown",
+            name = "棕色",
             text = {
-                "Destroys a random card in",
-                "hand and gives {C:attention}$2{} for every",
-                "{C:attention}2{} rounds this has been held",
-                "{C:inactive}(Currently {C:attention}#1#{C:inactive}, {}[{C:attention}#2#{C:inactive}#3#{}]{C:inactive})"
+                "每层升级可摧毁随机一张",
+                "手牌并获得{C:attention}$2",
+                "每{C:attention}1{}回合叠加一层升级",
+                "{C:inactive}当前升级层数：{C:attention}#1#",
+                "{C:inactive}当前升级进度：{C:attention}#2#{C:inactive}#3#"
             },
         },
         c_mf_grey = {
-            name = "Grey",
+            name = "灰色",
             text = {
-                "Create a {C:attention}Double Tag{} for",
-                "every {C:attention}3{} rounds",
-                "this has been held",
-                "{C:inactive}(Currently {C:attention}#1#{C:inactive}, {}[{C:attention}#2#{C:inactive}#3#{}]{C:inactive})"
+                "每层升级可生成一个{C:attention}双倍标签",
+                "每{C:attention}3{}回合叠加一层升级",
+                "{C:inactive}当前升级层数：{C:attention}#1#",
+                "{C:inactive}当前升级进度：{C:attention}#2#{C:inactive}#3#"
             },
         },
         c_mf_silver = {
-            name = "Silver",
+            name = "银色",
             text = {
-                "Create a {C:dark_edition}Polychrome Tag{} for",
-                "every {C:attention}3{} rounds",
-                "this has been held",
-                "{C:inactive}(Currently {C:attention}#1#{C:inactive}, {}[{C:attention}#2#{C:inactive}#3#{}]{C:inactive})"
+                "每层升级可生成一个{C:green}多彩标签",
+                "每{C:attention}3{}回合叠加一层升级",
+                "{C:inactive}当前升级层数：{C:attention}#1#",
+                "{C:inactive}当前升级进度：{C:attention}#2#{C:inactive}#3#"
             },
         },
         c_mf_white = {
-            name = "White",
+            name = "白色",
             text = {
-                "Create a random {C:dark_edition}Negative{}",
-                "{C:colourcard}Colour{} card for every",
-                "{C:attention}2{} rounds this has been held",
-                "{C:inactive}(Currently {C:attention}#1#{C:inactive}, {}[{C:attention}#2#{C:inactive}#3#{}]{C:inactive})"
+                "每层升级可生成一张",
+                "随机的{C:dark_edition}负片{C:colourcard}色彩卡{}",
+                "每{C:attention}2{}回合叠加一层升级",
+                "{C:inactive}当前升级层数：{C:attention}#1#",
+                "{C:inactive}当前升级进度：{C:attention}#2#{C:inactive}#3#"
             },
         },
         c_mf_red = {
-            name = "Red",
+            name = "红色",
             text = {
-                "Converts a random card in",
-                "hand to {C:hearts}Hearts{} for every",
-                "round this has been held",
-                "{C:inactive}(Currently {C:attention}#1#{C:inactive}, {}[{C:attention}#2#{C:inactive}#3#{}]{C:inactive})"
+                "每层升级可将随机一张",
+                "手牌转换为{C:hearts}红桃",
+                "每{C:attention}1{}回合叠加一层升级",
+                "{C:inactive}当前升级层数：{C:attention}#1#",
+                "{C:inactive}当前升级进度：{C:attention}#2#{C:inactive}#3#"
             },
         },
         c_mf_orange = {
             name = "Orange",
             text = {
-                "Converts a random card in",
-                "hand to {C:diamonds}Diamonds{} for every",
-                "round this has been held",
-                "{C:inactive}(Currently {C:attention}#1#{C:inactive}, {}[{C:attention}#2#{C:inactive}#3#{}]{C:inactive})"
+                "每层升级可将随机一张",
+                "手牌转换为{C:diamonds}方片",
+                "每{C:attention}1{}回合叠加一层升级",
+                "{C:inactive}当前升级层数：{C:attention}#1#",
+                "{C:inactive}当前升级进度：{C:attention}#2#{C:inactive}#3#"
             },
         },
         c_mf_yellow = {
-            name = "Yellow",
+            name = "黄色",
             text = {
-                "Gains {C:money}$8{} of",
-                "{C:attention}sell value{}",
-                "every {C:attention}3 rounds",
-                "{C:inactive}({}[{C:attention}#2#{C:inactive}#3#{}]{C:inactive})"
+                "每层升级会使本卡的",
+                "{C:attention}售出价格{}增加{C:money}$8",
+                "每{C:attention}3{}回合叠加一层升级",
+                "{C:inactive}当前升级层数：{C:attention}#1#",
+                "{C:inactive}当前升级进度：{C:attention}#2#{C:inactive}#3#"
             },
         },
         c_mf_green = {
-            name = "Green",
+            name = "绿色",
             text = {
-                "Create a {C:green}D6 Tag{} for",
-                "every {C:attention}3{} rounds",
-                "this has been held",
-                "{C:inactive}(Currently {C:attention}#1#{C:inactive}, {}[{C:attention}#2#{C:inactive}#3#{}]{C:inactive})"
+                "每层升级可生成一个{C:green}D6标签",
+                "每{C:attention}3{}回合叠加一层升级",
+                "{C:inactive}当前升级层数：{C:attention}#1#",
+                "{C:inactive}当前升级进度：{C:attention}#2#{C:inactive}#3#"
             },
         },
         c_mf_blue = {
-            name = "Blue",
+            name = "蓝色",
             text = {
-                "Create a random {C:dark_edition}Negative{}",
-                "{C:planet}Planet{} card for every",
-                "{C:attention}2{} rounds this has been held",
-                "{C:inactive}(Currently {C:attention}#1#{C:inactive}, {}[{C:attention}#2#{C:inactive}#3#{}]{C:inactive})"
+                "每层升级可生成一张",
+                "随机的{C:dark_edition}负片{C:planet}星球牌",
+                "每{C:attention}2{}回合叠加一层升级",
+                "{C:inactive}当前升级层数：{C:attention}#1#",
+                "{C:inactive}当前升级进度：{C:attention}#2#{C:inactive}#3#"
             },
         },
         c_mf_lilac = {
-            name = "Lilac",
+            name = "丁香紫色",
             text = {
-                "Create a random {C:dark_edition}Negative{}",
-                "{C:tarot}Tarot{} card for every",
-                "{C:attention}2{} rounds this has been held",
-                "{C:inactive}(Currently {C:attention}#1#{C:inactive}, {}[{C:attention}#2#{C:inactive}#3#{}]{C:inactive})"
+                "每层升级可生成一张",
+                "随机的{C:dark_edition}负片{C:tarot}塔罗牌",
+                "每{C:attention}2{}回合叠加一层升级",
+                "{C:inactive}当前升级层数：{C:attention}#1#",
+                "{C:inactive}当前升级进度：{C:attention}#2#{C:inactive}#3#"
             },
         },
         c_mf_pink = {
-            name = "Pink",
+            name = "粉色",
             text = {
-                "Add {C:attention}1{} round to a random",
-                "{C:colourcard}Colour{} card for every",
-                "{C:attention}2{} rounds this has been held",
-                "{C:inactive}(Currently {C:attention}#1#{C:inactive}, {}[{C:attention}#2#{C:inactive}#3#{}]{C:inactive})"
+                "每层升级可将一张随机",
+                "{C:colourcard}色彩卡{}的升级进度提升{C:attention}1",
+                "每{C:attention}2{}回合叠加一层升级",
+                "{C:inactive}当前升级层数：{C:attention}#1#",
+                "{C:inactive}当前升级进度：{C:attention}#2#{C:inactive}#3#"
             },
         },
         c_mf_peach = {
-            name = "Peach",
+            name = "蜜桃色",
             text = {
-                "Create a {C:dark_edition}Negative{} {C:spectral}Soul{}",
-                "card for every {C:attention}6{}",
-                "rounds this has been held",
-                "{C:inactive}(Currently {C:attention}#1#{C:inactive}, {}[{C:attention}#2#{C:inactive}#3#{}]{C:inactive})"
+                "每层升级可生成一张",
+                "随机的{C:dark_edition}负片{C:spectral}灵魂",
+                "每{C:attention}6{}回合叠加一层升级",
+                "{C:inactive}当前升级层数：{C:attention}#1#",
+                "{C:inactive}当前升级进度：{C:attention}#2#{C:inactive}#3#"
             },
         },
 
         v_mf_paintroller = {
-            name = "Paint Roller",
+            name = "刷漆滚筒",
             text = {
-                "{C:green}1 in 2{} chance to add",
-                "{C:attention}1{} round to {C:colourcard}Colour Cards{}",
-                "when they gain a round"
+                "{C:colourcard}色彩卡{}升级层数时",
+                "有{C:green}1/2{}的几率",
+                "额外获得{C:attention}1{}层"
             },
         },
         v_mf_colourtheory = {
@@ -1921,56 +1920,61 @@ function SMODS.INIT.MoreFluff()
         },
 
         mf_hugestuntman = {
-            name = "Huge Stuntman",
+            name = "特技大咖",
             text = {
-                "{X:red,C:white} X3 {} Mult, {C:chips}+300{} Chips,",
-                "{C:attention}-2{} hand size",
-                "{C:inactive}(Huge Joker + Stuntman)"
+                "{X:red,C:white} X3 {}倍率，{C:chips}+300{}筹码，",
+                "{C:attention}-2{}手牌上限",
+                "{C:inactive}（大小丑 + 特技演员）"
             },
         },
         c_mf_tan = {
-            name = "Tan",
+            name = "黄褐色",
             text = {
-                "Create a random {C:dark_edition}Negative{}",
-                "{C:alchemical}Alchemical{} card for every",
-                "{C:attention}2{} rounds this has been held",
-                "{C:inactive}(Currently {C:attention}#1#{C:inactive}, {}[{C:attention}#2#{C:inactive}#3#{}]{C:inactive})"
+                "每层升级可生成一张",
+                "随机的{C:dark_edition}负片{C:alchemical}炼金牌",
+                "每{C:attention}2{}回合叠加一层升级",
+                "{C:inactive}当前升级层数：{C:attention}#1#",
+                "{C:inactive}当前升级进度：{C:attention}#2#{C:inactive}#3#"
             },
         },
         c_mf_amber = {
-            name = "Amber",
+            name = "琥珀色",
             text = {
-                "Converts a random card in",
-                "hand to {C:fleurons}Fleurons{} for every",
-                "round this has been held",
-                "{C:inactive}(Currently {C:attention}#1#{C:inactive}, {}[{C:attention}#2#{C:inactive}#3#{}]{C:inactive})"
+                "每层升级可将随机一张",
+                "手牌转换为{C:印花}印花",
+                "每{C:attention}1{}回合叠加一层升级",
+                "{C:inactive}当前升级层数：{C:attention}#1#",
+                "{C:inactive}当前升级进度：{C:attention}#2#{C:inactive}#3#"
             },
         },
         c_mf_amethyst = {
-            name = "Amethyst",
+            name = "紫晶色",
             text = {
-                "Converts a random card in",
-                "hand to {C:halberds}Halberds{} for every",
-                "round this has been held",
-                "{C:inactive}(Currently {C:attention}#1#{C:inactive}, {}[{C:attention}#2#{C:inactive}#3#{}]{C:inactive})"
+                "每层升级可将随机一张",
+                "手牌转换为{C:斧枪}斧枪",
+                "每{C:attention}1{}回合叠加一层升级",
+                "{C:inactive}当前升级层数：{C:attention}#1#",
+                "{C:inactive}当前升级进度：{C:attention}#2#{C:inactive}#3#"
             },
         },
         c_mf_magenta = {
-            name = "Magenta",
+            name = "品红色",
             text = {
-                "Converts a random card in",
-                "hand to {C:stars}Stars{} for every",
-                "round this has been held",
-                "{C:inactive}(Currently {C:attention}#1#{C:inactive}, {}[{C:attention}#2#{C:inactive}#3#{}]{C:inactive})"
+                "每层升级可将随机一张",
+                "手牌转换为{C:星星}星星",
+                "每{C:attention}1{}回合叠加一层升级",
+                "{C:inactive}当前升级层数：{C:attention}#1#",
+                "{C:inactive}当前升级进度：{C:attention}#2#{C:inactive}#3#"
             },
         },
         c_mf_periwinkle = {
-            name = "Periwinkle",
+            name = "长春花蓝色",
             text = {
-                "Converts a random card in",
-                "hand to {C:moons}Moons{} for every",
-                "round this has been held",
-                "{C:inactive}(Currently {C:attention}#1#{C:inactive}, {}[{C:attention}#2#{C:inactive}#3#{}]{C:inactive})"
+                "每层升级可将随机一张",
+                "手牌转换为{C:月亮}月亮",
+                "每{C:attention}1{}回合叠加一层升级",
+                "{C:inactive}当前升级层数：{C:attention}#1#",
+                "{C:inactive}当前升级进度：{C:attention}#2#{C:inactive}#3#"
             },
         },
         -- c_mf_purple = {
@@ -2751,7 +2755,7 @@ function SMODS.INIT.MoreFluff()
             if SMODS.end_calculate_context(context) then
                 local red_suits = 0
                 for k, v in ipairs(context.full_hand) do
-                    if v:is_suit('Hearts', nil, true) or v:is_suit('Diamonds', nil, true) or v:is_suit('Stars', nil, true) or v:is_suit('Fleurons', nil, true) then
+                    if v:is_suit('Hearts', nil, true) or v:is_suit('Diamonds', nil, true) or v:is_suit('Stars', nil, true) or v:is_suit('印花', nil, true) then
                         red_suits = red_suits + 1
                     end
                 end
@@ -2814,7 +2818,7 @@ function SMODS.INIT.MoreFluff()
         SMODS.Jokers.j_mf_basepaulcard.calculate = function(self, context)
             if SMODS.end_calculate_context(context) then
                 -- hack. if paul support is added then incorporate that
-                if string.find(string.lower(G.PROFILES[G.SETTINGS.profile].name), "paul") then
+                if string.find(string.lower(G.PROFILES[G.SETTINGS.profile].name), "胖球") then
                     return {
                         message = localize{type='variable',key='a_xmult',vars={12.5}},
                         Xmult_mod = 12.5,
@@ -3057,7 +3061,7 @@ function SMODS.INIT.MoreFluff()
                         return true end }))
 
                     return {
-                        message = "Sealed!",
+                        message = "盖章成交！",
                         card = card
                     }
                 end
@@ -3138,7 +3142,7 @@ function SMODS.INIT.MoreFluff()
                             G.E_MANAGER:add_event(Event({trigger = 'after',delay = 0.15,func = function() context.full_hand[i]:flip();play_sound('tarot2', percent);context.full_hand[i]:set_ability(cen);return true end }))
                         end  
                         return {
-                            message = "Enhanced!",
+                            message = "已增强！",
                             colour = G.C.CHIPS,
                             card = self
                         }
@@ -3467,7 +3471,7 @@ function SMODS.INIT.MoreFluff()
                                 G.GAME.consumeable_buffer = 0
                             return true
                         end)}))
-                    card_eval_status_text(self, 'extra', nil, nil, nil, {message = "DEATH", colour = G.C.PURPLE})
+                    card_eval_status_text(self, 'extra', nil, nil, nil, {message = "死刑！", colour = G.C.PURPLE})
                 end
             end
         end
@@ -3809,29 +3813,29 @@ function SMODS.INIT.MoreFluff()
     
         SMODS.Jokers.j_mf_burnerphone.loc_def = function(self)
             if not G.deck or not G.deck.cards or #G.deck.cards == 0 then
-                return { "no ", "cards ", "left,", "the deck ", "is ", "empty", colours = {G.C.UI.TEXT_INACTIVE,G.C.UI.TEXT_INACTIVE,G.C.UI.TEXT_INACTIVE,
+                return { "空，", "无牌", "可用", "牌组", "已", "耗尽", colours = {G.C.UI.TEXT_INACTIVE,G.C.UI.TEXT_INACTIVE,G.C.UI.TEXT_INACTIVE,
                 G.C.UI.TEXT_INACTIVE,G.C.UI.TEXT_INACTIVE,G.C.UI.TEXT_INACTIVE} }
             end
             local has_this = false
             for i = 1,#G.jokers.cards do
                 local j = G.jokers.cards[i]
-                if j and j.ability.name == "Burner Phone" then
+                if j and j.ability.name == "一次性电话" then
                     has_this = true
                     break
                 end
             end
             if not has_this then
-                return { "is ", "not ", "owned,", "you ", "get ", "nothing", colours = {G.C.UI.TEXT_INACTIVE,G.C.UI.TEXT_INACTIVE,G.C.UI.TEXT_INACTIVE,
+                return { "未知，", "你尚未", "拥有此牌", "无法", "获取", "信息", colours = {G.C.UI.TEXT_INACTIVE,G.C.UI.TEXT_INACTIVE,G.C.UI.TEXT_INACTIVE,
                 G.C.UI.TEXT_INACTIVE,G.C.UI.TEXT_INACTIVE,G.C.UI.TEXT_INACTIVE} }
             end
             local cardlist = G.deck.cards
             if #cardlist == 1 then
                 local card = cardlist[#cardlist]
                 if card.ability.effect == "Stone Card" then
-                    return { "a ", "Stone ", "Card", "that ", "is ", "all", colours = {G.C.UI.TEXT_INACTIVE,G.C.UI.TEXT_INACTIVE,G.C.UI.TEXT_INACTIVE, 
+                    return { "一张", "石头", "牌", "没", "别的", "了", colours = {G.C.UI.TEXT_INACTIVE,G.C.UI.TEXT_INACTIVE,G.C.UI.TEXT_INACTIVE, 
                     G.C.UI.TEXT_INACTIVE,G.C.UI.TEXT_INACTIVE,G.C.UI.TEXT_INACTIVE} }
                 end
-                return { localize(card.base.value,"ranks").." ", "of ", localize(card.base.suit,"suits_plural"), "that ", "is ", "all", colours = {G.C.FILTER,G.C.UI.TEXT_DARK,G.C.SUITS[card.base.suit], 
+                return { localize(card.base.value,"ranks").."，", "花色为", localize(card.base.suit,"suits_plural"), "没", "别的", "了", colours = {G.C.FILTER,G.C.UI.TEXT_DARK,G.C.SUITS[card.base.suit], 
                 G.C.UI.TEXT_INACTIVE,G.C.UI.TEXT_INACTIVE,G.C.UI.TEXT_INACTIVE} }
             end
 
@@ -3848,8 +3852,8 @@ function SMODS.INIT.MoreFluff()
                     table.insert(colours, G.C.UI.TEXT_INACTIVE)
                     table.insert(colours, G.C.UI.TEXT_INACTIVE)
                 else
-                    table.insert(texts, localize(card.base.value,"ranks").." ")
-                    table.insert(texts, "of ")
+                    table.insert(texts, localize(card.base.value,"ranks").."，")
+                    table.insert(texts, "花色为")
                     table.insert(texts, localize(card.base.suit,"suits_plural"))
                     table.insert(colours, G.C.FILTER)
                     table.insert(colours, G.C.UI.TEXT_DARK)
@@ -4309,7 +4313,7 @@ function Card.calculate_dollar_bonus(self)
                 return G.GAME.skips * 3
             end
         end
-        if self.ability.name == 'Golden Carrot' then
+        if self.ability.name == '黄金胡萝卜' then
             if self.ability.extra >= 0 then
                 return self.ability.extra + 2
             end
@@ -4414,7 +4418,7 @@ function Card.add_to_deck(self, from_debuff)
         if self.ability.name == 'Huge Joker' or self.ability.name == "Huge Stuntman" then
             G.hand:change_size(-2)
         end
-        if self.ability.name == 'Hollow Joker' then
+        if self.ability.name == '中空小丑' then
             G.hand:change_size(-1)
         end
         if self.ability.name == "Philosophical Joker" then
@@ -4432,7 +4436,7 @@ function Card.remove_from_deck(self, from_debuff)
         if self.ability.name == 'Huge Joker' or self.ability.name == "Huge Stuntman" then
             G.hand:change_size(2)
         end
-        if self.ability.name == 'Hollow Joker' then
+        if self.ability.name == '中空小丑' then
             G.hand:change_size(1)
         end
         if self.ability.name == "Philosophical Joker" then
@@ -4507,7 +4511,7 @@ function trigger_colour_end_of_round(_card)
                         G.E_MANAGER:add_event(Event({
                             func = function() 
                                 card_eval_status_text(_card, 'extra', nil, nil, nil, {
-                                    message = 'Upgrade!',
+                                    message = '升级！',
                                         colour = G.C.SECONDARY_SET.ColourCard,
                                     card = _card
                                 }) 
