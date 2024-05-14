@@ -980,8 +980,8 @@ function Card:use_consumeable(area, copier)
                 (self.ability.name == "Orange" and "Diamonds") or
                 (self.ability.name == "Deep Blue" and "Spades") or
                 (self.ability.name == "Seaweed" and "Clubs") or 
-                (self.ability.name == "Amber" and "Fleurons") or
-                (self.ability.name == "Amethyst" and "Halberds") or
+                (self.ability.name == "Amber" and "印花") or
+                (self.ability.name == "Amethyst" and "斧枪") or
                 (self.ability.name == "Magenta" and "Stars") or
                 (self.ability.name == "Periwinkle" and "Moons") or
                 (self.ability.name == "Purple" and "Notes")
@@ -997,9 +997,9 @@ function Card:use_consumeable(area, copier)
                 (self.ability.name == "Purple" and "pur")
 
             if self.ability.name == "Amber" then
-                acknowledge("Fleurons")
+                acknowledge("印花")
             elseif self.ability.name == "Amethyst" then
-                acknowledge("Halberds")
+                acknowledge("斧枪")
             end
             local blacklist = {}
             for i = 1, self.ability.extra do
@@ -1873,10 +1873,11 @@ function SMODS.INIT.MoreFluff()
             },
         },
         v_mf_colourtheory = {
-            name = "Colour Theory",
+            name = "色彩理论",
             text = {
-                "{C:green}1 in 2{} {C:colourcard}Colour{} cards in",
-                "packs are {C:dark_edition}Polychrome{}",
+                "{C:colourcard}色彩包{}中的卡",
+                "有{C:green}1/2{}的几率",
+                "带有{C:dark_edition}多彩",
             },
         },
 
