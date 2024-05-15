@@ -1502,7 +1502,7 @@ function SMODS.INIT.MoreFluff()
             name = "集券册",
             text = {
                 "本赛局内",
-                "每购买过一张{C:attention}优惠券",
+                "每兑换过一张{C:attention}奖券",
                 "{C:mult}+10{}倍率",
                 "{C:inactive}（当前为{C:mult}+#1#{C:inactive}倍率）"
             }
@@ -2482,7 +2482,7 @@ function SMODS.INIT.MoreFluff()
         text = {
             "开局时即拥有",
             "{C:colourcard}白色色彩卡{}",
-            "和{C:tarot,T:v_mf_paintroller}刷漆滚筒{}优惠券",
+            "和{C:tarot,T:v_mf_paintroller}刷漆滚筒{}奖券",
         }
     })
     :register()
