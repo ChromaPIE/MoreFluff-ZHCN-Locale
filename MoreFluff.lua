@@ -1197,7 +1197,7 @@ function SMODS.INIT.MoreFluff()
                 "在选择{C:attention}盲注{}时",
                 "摧毁最左边的小丑牌",
                 "并将其售价的{C:attention}五倍",
-                "永久添加至这张牌的{C:blue}筹码",
+                "永久添加至本牌的{C:blue}筹码",
                 "{C:inactive}（当前为{C:chips}+#1#{C:inactive}筹码）"
             }
         },
@@ -1472,7 +1472,7 @@ function SMODS.INIT.MoreFluff()
             name = "独狼",
             text = {
                 "如果只打出{C:attention}1{}张牌",
-                "这张牌获得{X:mult,C:white} X0.1 {}倍率",
+                "本牌获得{X:mult,C:white} X0.1 {}倍率",
                 "{C:inactive}（当前为{X:mult,C:white} X#1# {C:inactive}倍率）",
             }
         },
@@ -1667,7 +1667,7 @@ function SMODS.INIT.MoreFluff()
             text = {
                 "如果打出的牌中",
                 "包含{C:hearts}红色{}同花",
-                "这张牌获得{C:mult}+4{}倍率",
+                "本牌获得{C:mult}+4{}倍率",
                 "包含{C:spades}黑色{}同花",
                 "则获得{C:chips}+15{}筹码",
                 "{C:inactive}（当前为{C:mult}+#1#{C:inactive}|{C:chips}+#2#{C:inactive}）"
