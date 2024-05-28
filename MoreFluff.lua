@@ -216,7 +216,7 @@ function create_UIBox_your_collection_colours()
     
     local colour_options = {}
     for i = 1, math.ceil(#G.P_CENTER_POOLS.Colour/8) do
-        table.insert(colour_options, localize('k_page')..' '..tostring(i)..'/'..tostring(math.ceil(#G.P_CENTER_POOLS.Colour/8)))
+        table.insert(colour_options, '第'..tostring(i)..'/'..tostring(math.ceil(#G.P_CENTER_POOLS.Colour/8))..localize('k_page'))
     end
     
     for j = 1, #G.your_collection do
@@ -1595,7 +1595,7 @@ function SMODS.INIT.MoreFluff()
                 "选择盲注时",
                 "将两张临时的",
                 "{C:attention}钢铁牌{}",
-                "加入牌组"
+                "加入手牌"
             },
         },
         mf_hyperbeam = {
@@ -2780,7 +2780,7 @@ function SMODS.INIT.MoreFluff()
         SMODS.Jokers.j_mf_basepaulcard.calculate = function(self, context)
             if SMODS.end_calculate_context(context) then
                 -- hack. if paul support is added then incorporate that
-                if string.find(string.lower(G.PROFILES[G.SETTINGS.profile].name), "胖球") then
+                if string.find(string.lower(G.PROFILES[G.SETTINGS.profile].name), "pangqiu") then
                     return {
                         message = localize{type='variable',key='a_xmult',vars={12.5}},
                         Xmult_mod = 12.5,
