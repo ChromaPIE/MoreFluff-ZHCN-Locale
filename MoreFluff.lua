@@ -3781,7 +3781,7 @@ function SMODS.INIT.MoreFluff()
             local has_this = false
             for i = 1,#G.jokers.cards do
                 local j = G.jokers.cards[i]
-                if j and j.ability.name == "一次性电话" then
+                if j and j.ability.name == "Burner Phone" then
                     has_this = true
                     break
                 end
