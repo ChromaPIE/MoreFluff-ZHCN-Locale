@@ -3807,9 +3807,9 @@ function SMODS.INIT.MoreFluff()
             for i = 0, 1 do
                 local card = cardlist[#cardlist - i]
                 if card.ability.effect == "Stone Card" then
-                    table.insert(texts, "a ")
-                    table.insert(texts, "Stone ")
-                    table.insert(texts, "Card")
+                    table.insert(texts, "一张")
+                    table.insert(texts, "石头")
+                    table.insert(texts, "牌")
                     table.insert(colours, G.C.UI.TEXT_INACTIVE)
                     table.insert(colours, G.C.UI.TEXT_INACTIVE)
                     table.insert(colours, G.C.UI.TEXT_INACTIVE)
